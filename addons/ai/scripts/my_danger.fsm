@@ -1,0 +1,89 @@
+/*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, my_danger">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"_",0,250,-33.953491,-252.906967,56.046509,-202.906967,0.000000,""};
+item1[] = {"_",4,218,-35.856720,-163.194168,54.143280,-113.194168,0.000000,""};
+item2[] = {"__1",2,250,-38.763702,-68.910172,51.236313,-18.910172,0.000000,""};
+item3[] = {"_",4,218,-40.060860,22.737305,49.939148,72.737305,0.000000,""};
+item4[] = {"__2",1,4346,-38.425907,111.813049,51.574127,161.813034,0.000000,""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {3,4};
+globals[] = {0.000000,0,0,0,0,640,480,1,9,6316128,1,-483.152985,483.152832,273.761292,-275.871887,1032,587,1};
+window[] = {0,-1,-1,-1,-1,863,104,1544,104,1,1050};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "my_danger";
+        class States
+        {
+                /*%FSM<STATE "_">*/
+                class _
+                {
+                        name = "_";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"systemChat ""Hello world!"";" \n
+                         "diag_log text ""Hello world!"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="__1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true;"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__1">*/
+                class __1
+                {
+                        name = "__1";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"systemChat ""I'm Alive!"";" \n
+                         "diag_log text ""I'm alive!"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="__2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true;"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "__2">*/
+                class __2
+                {
+                        name = "__2";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"systemChat ""Goodbye world!"";" \n
+                         "diag_log text ""Goodbye world!"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="_";
+        finalStates[] =
+        {
+                "__2",
+        };
+};
+/*%FSM</COMPILE>*/

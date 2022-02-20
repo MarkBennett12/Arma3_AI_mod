@@ -1,0 +1,1 @@
+execFSM "addons\ai\scripts\my_danger.fsm";
