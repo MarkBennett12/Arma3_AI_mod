@@ -18,8 +18,5 @@ class CfgVehicles
     class CAManBase: Man
     {
         fsmDanger = "ai\scripts\my_danger.fsm";
-        
-
-
     };
 };

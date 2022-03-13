@@ -1,27 +1,34 @@
 /*%FSM<COMPILE "F:\SteamLibrary\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, my_danger">*/
 /*%FSM<HEAD>*/
 /*
-item0[] = {"_",0,250,-33.953491,-252.906967,56.046509,-202.906967,0.000000,""};
+item0[] = {"Start_",0,250,-33.953491,-252.906967,56.046509,-202.906967,0.000000,"Start" \n ""};
 item1[] = {"_",4,218,-35.856720,-163.194168,54.143280,-113.194168,0.000000,""};
-item2[] = {"__1",2,250,-38.763702,-68.910172,51.236313,-18.910172,0.000000,""};
-item3[] = {"_",4,218,-40.060860,22.737305,49.939148,72.737305,0.000000,""};
-item4[] = {"__2",1,4346,-38.425907,111.813049,51.574127,161.813034,0.000000,""};
+item2[] = {"Test",2,250,-38.763702,-68.910172,51.236313,-18.910172,0.000000,"Test"};
+item3[] = {"__1",4,218,-40.060860,22.737305,49.939148,72.737305,0.000000,""};
+item4[] = {"End",1,250,-38.425907,111.813049,51.574127,161.813034,0.000000,"End"};
+item5[] = {"Loop",2,250,-257.245453,-244.189713,-167.245422,-194.189713,0.000000,"Loop"};
+item6[] = {"_",8,218,-149.112823,-174.626740,-59.112823,-124.626740,1.000000,""};
+item7[] = {"_",4,218,-245.079803,-74.964371,-155.079834,-24.964371,0.000000,""};
 link0[] = {0,1};
 link1[] = {1,2};
 link2[] = {2,3};
-link3[] = {3,4};
-globals[] = {0.000000,0,0,0,0,640,480,1,9,6316128,1,-483.152985,483.152832,273.761292,-275.871887,1032,587,1};
-window[] = {0,-1,-1,-1,-1,863,104,1544,104,1,1050};
+link3[] = {2,6};
+link4[] = {3,4};
+link5[] = {5,7};
+link6[] = {6,5};
+link7[] = {7,2};
+globals[] = {0.000000,0,0,0,0,640,480,1,12,6316128,1,-488.664063,477.641663,201.443939,-348.189240,1403,884,1};
+window[] = {2,-1,-1,-1,-1,967,208,1648,208,3,1421};
 *//*%FSM</HEAD>*/
 class FSM
 {
         fsmName = "my_danger";
         class States
         {
-                /*%FSM<STATE "_">*/
-                class _
+                /*%FSM<STATE "Start_">*/
+                class Start_
                 {
-                        name = "_";
+                        name = "Start_";
                         itemno = 0;
                         init = /*%FSM<STATEINIT""">*/"systemChat ""Hello world!"";" \n
                          "diag_log text ""Hello world!"";"/*%FSM</STATEINIT""">*/;
@@ -33,7 +40,7 @@ class FSM
                                 {
                                         itemno = 1;
                                         priority = 0.000000;
-                                        to="__1";
+                                        to="Test";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"true;"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
@@ -42,10 +49,10 @@ class FSM
                         };
                 };
                 /*%FSM</STATE>*/
-                /*%FSM<STATE "__1">*/
-                class __1
+                /*%FSM<STATE "Test">*/
+                class Test
                 {
-                        name = "__1";
+                        name = "Test";
                         itemno = 2;
                         init = /*%FSM<STATEINIT""">*/"systemChat ""I'm Alive!"";" \n
                          "diag_log text ""I'm alive!"";"/*%FSM</STATEINIT""">*/;
@@ -55,21 +62,32 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 3;
-                                        priority = 0.000000;
-                                        to="__2";
+                                        itemno = 6;
+                                        priority = 1.000000;
+                                        to="Loop";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"true;"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "__1">*/
+                                class __1
+                                {
+                                        itemno = 3;
+                                        priority = 0.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"false;"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
                         };
                 };
                 /*%FSM</STATE>*/
-                /*%FSM<STATE "__2">*/
-                class __2
+                /*%FSM<STATE "End">*/
+                class End
                 {
-                        name = "__2";
+                        name = "End";
                         itemno = 4;
                         init = /*%FSM<STATEINIT""">*/"systemChat ""Goodbye world!"";" \n
                          "diag_log text ""Goodbye world!"";"/*%FSM</STATEINIT""">*/;
@@ -79,11 +97,35 @@ class FSM
                         };
                 };
                 /*%FSM</STATE>*/
+                /*%FSM<STATE "Loop">*/
+                class Loop
+                {
+                        name = "Loop";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/"systemChat ""I'm still alive!"";" \n
+                         "diag_log text ""I'm still alive!"";"/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="Test";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true;"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
         };
-        initState="_";
+        initState="Start_";
         finalStates[] =
         {
-                "__2",
+                "End",
         };
 };
 /*%FSM</COMPILE>*/
